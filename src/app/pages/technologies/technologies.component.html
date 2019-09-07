@@ -1,12 +1,14 @@
 <nb-card>
-  <nb-card-header>
-    Technologies
-    <div>
+  <nb-card-header class="row">
+    <div class="col-sm-5">
+      Technologies
       <button [hidden]="!this.isEditable()" (click)="addTechnology()"
               ghost class="add-tech" nbButton
               status="success" shape="round" size="small" nbTooltip="Create technology">
         <nb-icon icon="plus-circle-outline"></nb-icon>
       </button>
+    </div>
+    <div class="col-12 col-sm-7">
       <input type="text" [formControl]="queryField" nbInput fieldSize="small" shape="round" placeholder="Search...">
     </div>
   </nb-card-header>

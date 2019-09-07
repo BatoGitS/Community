@@ -1,74 +1,74 @@
 <nb-card>
-  <nb-card-header>Profile card </nb-card-header>
+  <nb-card-header>Profile card</nb-card-header>
   <nb-card-body>
-          <div class="form-group row">
-            <label for="Fullname" class="label col-sm-3 col-form-label">Fullname</label>
-            <div *ngIf="isEditable() else FullnameRO" class="col-sm-9">
-              <input type="text" nbInput fullWidth id="Fullname" placeholder="Fullname"
-                     [ngModel]="user?.fullName"
-                     (ngModelChange)="user.fullName = $event">
-            </div>
-            <ng-template #FullnameRO>
-              <div class="col-sm-9">
-                {{user?.fullName}}
-              </div>
-            </ng-template>
-          </div>
+    <div class="form-group row">
+      <label for="Fullname" class="label col-sm-3 col-form-label">Fullname</label>
+      <div *ngIf="isEditable() else FullnameRO" class="col-sm-9">
+        <input type="text" nbInput fullWidth id="Fullname" placeholder="Fullname"
+               [ngModel]="user?.fullName"
+               (ngModelChange)="user.fullName = $event">
+      </div>
+      <ng-template #FullnameRO>
+        <div class="col-sm-9">
+          {{user?.fullName}}
+        </div>
+      </ng-template>
+    </div>
 
-          <div class="form-group row">
-            <label for="Birthday" class="label col-sm-3 col-form-label">Birthday</label>
-            <div *ngIf="isEditable() else BirthDayRO" class="col-sm-9">
-              <input nbInput type="date" fullWidth id="Birthday"
-                     placeholder="Birthday"
-                      [ngModel]="user?.birthDay | date: 'yyyy-MM-dd'"
-                     (ngModelChange)="user.birthDay = $event">
-            </div>
-            <ng-template #BirthDayRO>
-              <div class="col-sm-9">
-                {{user?.birthDay | date : 'dd.MM.yyyy'}}
-              </div>
-            </ng-template>
-          </div>
+    <div class="form-group row">
+      <label for="Birthday" class="label col-sm-3 col-form-label">Birthday</label>
+      <div *ngIf="isEditable() else BirthDayRO" class="col-sm-9">
+        <input nbInput type="date" fullWidth id="Birthday"
+               placeholder="Birthday"
+               [ngModel]="user?.birthDay | date: 'yyyy-MM-dd'"
+               (ngModelChange)="user.birthDay = $event">
+      </div>
+      <ng-template #BirthDayRO>
+        <div class="col-sm-9">
+          {{user?.birthDay | date : 'dd.MM.yyyy'}}
+        </div>
+      </ng-template>
+    </div>
 
-          <div class="form-group row">
-            <label for="City" class="label col-sm-3 col-form-label">City</label>
-            <div *ngIf="isEditable() else CityRO" class="col-sm-9">
-              <input type="text" nbInput fullWidth id="City" placeholder="City"
-                     [ngModel]="user?.city"
-                     (ngModelChange)="user.city = $event">
-            </div>
-            <ng-template #CityRO>
-              <div class="col-sm-9">
-                {{user?.city}}
-              </div>
-            </ng-template>
-          </div>
+    <div class="form-group row">
+      <label for="City" class="label col-sm-3 col-form-label">City</label>
+      <div *ngIf="isEditable() else CityRO" class="col-sm-9">
+        <input type="text" nbInput fullWidth id="City" placeholder="City"
+               [ngModel]="user?.city"
+               (ngModelChange)="user.city = $event">
+      </div>
+      <ng-template #CityRO>
+        <div class="col-sm-9">
+          {{user?.city}}
+        </div>
+      </ng-template>
+    </div>
 
-          <div class="form-group row">
-            <label for="AboutMe" class="label col-sm-3 col-form-label">About Me</label>
-            <div *ngIf="isEditable() else AboutMeRO" class="col-sm-9">
+    <div class="form-group row">
+      <label for="AboutMe" class="label col-sm-3 col-form-label">About Me</label>
+      <div *ngIf="isEditable() else AboutMeRO" class="col-sm-9">
               <textarea nbInput fullWidth id="AboutMe" placeholder="About Me"
                         [ngModel]="user?.about"
                         (ngModelChange)="user.about = $event"></textarea>
-            </div>
-            <ng-template #AboutMeRO>
-              <div class="col-sm-9">
-                {{user?.about}}
-              </div>
-            </ng-template>
-          </div>
+      </div>
+      <ng-template #AboutMeRO>
+        <div class="col-sm-9">
+          {{user?.about}}
+        </div>
+      </ng-template>
+    </div>
 
-          <div [hidden]="!this.isEditable()" class="form-group row">
-            <div class="offset-sm-3 col-sm-9">
-              <button (click)="save($event)" type="button" nbButton status="primary">Save</button>
-            </div>
-          </div>
+    <div [hidden]="!this.isEditable()" class="form-group row">
+      <div class="offset-sm-3 col-sm-9">
+        <button (click)="save($event)" type="button" nbButton status="primary">Save</button>
+      </div>
+    </div>
   </nb-card-body>
   <nb-card-footer>
-    <ngx-app-technology-item (deleted)="deleted($event)"
-      [technologyScore]="technology"
-      [user-id]="user.id"
-      *ngFor="let technology of technologies">
+    <ngx-app-technology-item (deleted)="deleted($event)" canCallActions="true"
+                             [technologyScore]="technology"
+                             [user-id]="user.id"
+                             *ngFor="let technology of technologies">
     </ngx-app-technology-item>
     <button (click)="addTechnology()" [hidden]="!this.isEditable()"
             ghost class="add-tech" nbButton

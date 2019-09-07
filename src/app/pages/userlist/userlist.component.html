@@ -1,7 +1,11 @@
 <nb-card>
-  <nb-card-header>
-    Userlist
-    <div><input [formControl]="queryField" type="text" nbInput fieldSize="small" shape="round" placeholder="Search..."></div>
+  <nb-card-header class="row">
+    <div class="col-sm-5">
+      Userlist
+    </div>
+    <div class="col-12 col-sm-7">
+      <input [formControl]="queryField" type="text" nbInput fieldSize="small" shape="round" placeholder="Search...">
+    </div>
   </nb-card-header>
   <div class="ngx-list-group" [nbSpinner]="loading" nbSpinnerStatus="primary"><!---->
     <ngx-user-list-item [routerLink]="['/pages/user', user.id]" class="nb-list-item"
@@ -10,7 +14,7 @@
   </div>
   <nb-card-footer>
     <nb-actions fullWidth>
-      <nb-action icon="arrow-left-outline"(click)="previousPage()" [disabled]="disabled().previous"></nb-action>
+      <nb-action icon="arrow-left-outline" (click)="previousPage()" [disabled]="disabled().previous"></nb-action>
       <nb-action>{{userList.pageNumber}}</nb-action>
       <nb-action icon="arrow-right-outline" (click)="nextPage()" [disabled]="disabled().next"></nb-action>
     </nb-actions>

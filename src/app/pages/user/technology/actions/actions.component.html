@@ -1,6 +1,13 @@
 <nb-card>
-<nb-actions>
-  <nb-action (click)="setScore(2)">delete</nb-action>
-  <nb-action (click)="setScore(1, score)" *ngFor="let score of [1,2,3,4,5]">{{score}}</nb-action>
-</nb-actions>
+  <nb-card-header>
+    Actions
+  </nb-card-header>
+  <nb-card-body>
+    <nb-actions>
+      <nb-action (click)="setScore(2)" [hidden]="!IsOwn()">Delete</nb-action>
+      <nb-action (click)="setScore(1, score)" [hidden]="IsOwn()" *ngFor="let score of [1,2,3,4,5]">
+        {{score}}
+      </nb-action>
+    </nb-actions>
+  </nb-card-body>
 </nb-card>
