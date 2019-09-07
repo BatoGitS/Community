@@ -14,7 +14,7 @@ export class AuthService {
   private readonly JWT_TOKEN = 'JWT_TOKEN';
   private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
   private loggedUser: string;
-  private storage: any = sessionStorage;
+  private storage: any = localStorage;
 
   constructor(private http: HttpClient) {
   }
