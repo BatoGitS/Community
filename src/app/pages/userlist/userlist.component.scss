@@ -1,0 +1,38 @@
+@import '../../@theme/styles/themes';
+
+@include nb-install-component() {
+  nb-card {
+    overflow: hidden;
+  }
+  nb-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: nb-theme(card-header-with-select-padding-top);
+    padding-bottom: nb-theme(card-header-with-select-padding-bottom);
+    margin-bottom: -1px;
+  }
+   nb-card > div.ngx-list-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    overflow: auto;
+    &:first-child {
+      border-top: 1px solid #ff0000 !important;
+    }
+
+    & ngx-user-list-item {
+      border-bottom: 1px solid #edf1f7;
+      color: #1a2138;
+      font-family: Open Sans, sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 400;
+      line-height: 1.25rem;
+      padding: 1rem;
+      &:first-child {
+        border-top: 1px solid #edf1f7;
+      }
+    }
+  }
+
+}

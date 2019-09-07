@@ -1,0 +1,12 @@
+<button (click)="action()" nbButton
+        [className]="technologyScore.avgScore===0 ? 'zero-score' : ''"
+        [nbTooltip]="technologyScore.technology.description"
+        outline shape="round" size="small"
+        [status]="status" style="position: relative">
+  {{technologyScore.technology.name}}
+  <nb-badge
+    [className]="technologyScore.avgScore===0 ? 'zero-score' : ''"
+    [text]="technologyScore.avgScore | number:'1.0-1'"
+    [status]="status" position="top end">
+  </nb-badge>
+</button>

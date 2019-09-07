@@ -1,0 +1,16 @@
+<nb-card>
+  <nb-card-header>
+    Technologies
+    <div>
+      <button [hidden]="!this.isEditable()" (click)="addTechnology()"
+              ghost class="add-tech" nbButton
+              status="success" shape="round" size="small" nbTooltip="Create technology">
+        <nb-icon icon="plus-circle-outline"></nb-icon>
+      </button>
+      <input type="text" [formControl]="queryField" nbInput fieldSize="small" shape="round" placeholder="Search...">
+    </div>
+  </nb-card-header>
+  <nb-list>
+    <nb-list-item (click)="pick(tech.id)" *ngFor="let tech of forRender">{{tech.name}}: {{tech.description}}</nb-list-item>
+  </nb-list>
+</nb-card>

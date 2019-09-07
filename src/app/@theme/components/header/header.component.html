@@ -1,0 +1,21 @@
+<div class="header-container">
+  <div class="logo-container">
+    <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
+      <nb-icon icon="menu-2-outline"></nb-icon>
+    </a>
+    <a class="logo" href="#" (click)="navigateHome()">ngx-<span>admin</span></a>
+  </div>
+</div>
+
+<div class="header-container">
+  <nb-actions size="small">
+    <nb-action [hidden]="!isLoggedIn()" class="user-action"
+               routerLink="/pages/user/{{getMyId()}}"
+               icon="person-outline"
+               nbTooltip="My Profile"></nb-action>
+    <nb-action class="user-action"
+               (click)="logout()"
+               [icon]="isLoggedIn()?'lock-outline':'unlock-outline'"
+               nbTooltip="{{isLoggedIn()?'Log Out':'Login Page'}}"></nb-action>
+  </nb-actions>
+</div>

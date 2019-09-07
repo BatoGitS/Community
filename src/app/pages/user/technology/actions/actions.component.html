@@ -1,0 +1,6 @@
+<nb-card>
+<nb-actions>
+  <nb-action (click)="setScore(2)">delete</nb-action>
+  <nb-action (click)="setScore(1, score)" *ngFor="let score of [1,2,3,4,5]">{{score}}</nb-action>
+</nb-actions>
+</nb-card>

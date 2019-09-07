@@ -1,0 +1,37 @@
+@import '../../../@theme/styles/themes';
+
+$zero-score-color: #bbc5d7;
+$zero-score-hover-color: #c3ccde;
+
+@include nb-install-component() {
+  button {
+    padding-right: 3em  !important;
+    margin-right: 5px;
+    margin-bottom: 5px;
+
+    &.zero-score {
+      border-color: $zero-score-color;
+      color: $zero-score-color;
+      &:hover {
+        border-color: $zero-score-hover-color;
+        color: $zero-score-hover-color;
+      }
+    }
+
+
+    & nb-badge{
+      border-radius: 1.5rem;
+      line-height: 1.25rem !important;
+      min-width: 1.5rem !important;
+
+      &.zero-score {
+        border-color: $zero-score-color;
+        background-color: $zero-score-color;
+        &:hover {
+          border-color: $zero-score-hover-color;
+          background-color: $zero-score-hover-color;
+        }
+      }
+    }
+  }
+}

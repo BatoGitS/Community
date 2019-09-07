@@ -1,0 +1,35 @@
+<nb-card>
+  <nb-card-header>Log In</nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+
+      <div class="form-group row">
+        <label for="email" class="label col-sm-3 col-form-label">Email</label>
+        <div class="col-sm-9">
+          <input type="text" nbInput fullWidth id="email" placeholder="Email" formControlName="email" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="fullname" class="label col-sm-3 col-form-label">Full Name</label>
+        <div class="col-sm-9">
+          <input type="text" nbInput fullWidth id="fullname" placeholder="Full Name" formControlName="fullName" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="password" class="label col-sm-3 col-form-label">Password</label>
+        <div class="col-sm-9">
+          <input type="password" nbInput fullWidth id="password" placeholder="Password" formControlName="password" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="offset-sm-3 col-sm-3">
+          <button nbButton type="submit"  status="primary" [disabled]="!registerForm.valid">Register</button>
+        </div>
+        <div class="offset-sm-3 col-sm-3" style="margin-bottom: 1em">
+          <a nbButton fullWidth routerLink="/auth/login" outline status="warning">login</a>
+        </div>
+      </div>
+
+    </form>
+  </nb-card-body>
+</nb-card>
