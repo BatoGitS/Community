@@ -4,13 +4,20 @@
   nb-card {
     overflow: hidden;
   }
-  nb-card-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: nb-theme(card-header-with-select-padding-top);
-    padding-bottom: nb-theme(card-header-with-select-padding-bottom);
-    margin-bottom: -1px;
+
+  nb-card-header input {
+    float: right;
+  }
+
+  @media (max-width: 575px) {
+    nb-card-header .col-sm-5 button {
+      padding: 0.3rem 0;
+      float: right;
+    }
+    nb-card-header .col-12 input {
+      width: 100%;
+      max-width: 100%;
+    }
   }
 
 }

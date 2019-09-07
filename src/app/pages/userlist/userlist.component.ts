@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
+import {Component, OnInit} from '@angular/core';
+import {Location} from '@angular/common';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../../@core/service/auth.service';
 import {FormControl} from '@angular/forms';
-import {IPaginatedUsers} from "../../@core/data/users";
-import {UserService} from "../../@core/service/users.service";
+import {IPaginatedUsers} from '../../@core/data/users';
+import {UserService} from '../../@core/service/users.service';
 
 @Component({
   selector: 'ngx-userlist',
@@ -23,8 +23,9 @@ export class UserlistComponent implements OnInit {
     nextPage: null,
     previousPage: null,
   };
+
   disabled() {
-    return  {
+    return {
       previous: this.userList.previousPage == null,
       next: this.userList.nextPage == null,
     };
@@ -34,15 +35,16 @@ export class UserlistComponent implements OnInit {
               private router: Router,
               private userService: UserService,
               private authService: AuthService,
-              private location: Location) { }
+              private location: Location) {
+  }
 
   ngOnInit() {
     this.loadUsers(this.userList.pageNumber);
     this.queryField.valueChanges
       .debounceTime(500)
       .distinctUntilChanged()
-      .switchMap((query) =>  this.userService.getUsers(query))
-      .subscribe( result => {
+      .switchMap((query) => this.userService.getUsers(query))
+      .subscribe(result => {
         this.userList = result;
       });
   }

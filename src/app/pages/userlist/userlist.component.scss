@@ -4,19 +4,28 @@
   nb-card {
     overflow: hidden;
   }
-  nb-card-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: nb-theme(card-header-with-select-padding-top);
-    padding-bottom: nb-theme(card-header-with-select-padding-bottom);
-    margin-bottom: -1px;
+
+  nb-card-header input {
+    float: right;
   }
-   nb-card > div.ngx-list-group {
+
+  @media (max-width: 575px) {
+    nb-card-header .col-sm-5 button {
+      padding: 0.3rem 0;
+      float: right;
+    }
+    nb-card-header .col-12 input {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+
+  nb-card > div.ngx-list-group {
     display: flex;
     flex-direction: column;
     flex: 1 1 auto;
     overflow: auto;
+
     &:first-child {
       border-top: 1px solid #ff0000 !important;
     }
@@ -29,6 +38,7 @@
       font-weight: 400;
       line-height: 1.25rem;
       padding: 1rem;
+
       &:first-child {
         border-top: 1px solid #edf1f7;
       }
