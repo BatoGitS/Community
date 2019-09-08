@@ -5,6 +5,8 @@ import {catchError, mapTo, tap} from 'rxjs/operators';
 import {Tokens} from '../data/tokens';
 import {config} from '../config';
 import * as jwt_decode from 'jwt-decode';
+import * as signalR from '@aspnet/signalr';
+import {NbToastrService} from '@nebular/theme';
 
 @Injectable({
   providedIn: 'root',
@@ -13,16 +15,42 @@ export class AuthService {
 
   private readonly JWT_TOKEN = 'JWT_TOKEN';
   private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
+  private hubConnection: signalR.HubConnection;
   private loggedUser: string;
   private storage: any = localStorage;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private toastrService: NbToastrService) {
+  }
+
+  connectToHub() {
+    this.hubConnection = new signalR.HubConnectionBuilder()
+      .withUrl(`${config.apiBase}/notify`, {accessTokenFactory: () => this.getJwtToken()})
+      .build();
+    Object.defineProperty(WebSocket, 'OPEN', { value: 1 });
+
+    this.hubConnection.on('newmark', (val, val2) => {
+      const message = `new mark is ${val2} avg score is ${Math.round((val.avgScore) * 100) / 100}`;
+      this.toastrService.show(message, `New mark for ` + val.technology.name,
+        {limit: 3, status: 'info', icon: ''});
+    });
+
+    this.hubConnection
+      .start()
+      .then(() => console.log('Connection started'))
+      .catch(err => console.log('Error while starting connection: ' + err));
+  }
+
+  disconnectFromHub() {
+    this.hubConnection.stop().then(() => console.log('Connection stopped'))
+      .catch(err => console.log('Error while stopping connection: ' + err));
   }
 
   login(user: { email: string, password: string }, remember: boolean = false): Observable<any> {
     return this.http.post<any>(`${config.apiUrl}/auth/login`, user)
       .pipe(
         tap(tokens => this.doLoginUser(user.email, tokens, remember)),
+        tap(() => this.connectToHub()),
         mapTo(true),
         catchError(error => {
           return of(error.error);
@@ -33,6 +61,7 @@ export class AuthService {
     return this.http.post<any>(`${config.apiUrl}/auth/register`, user)
       .pipe(
         tap(tokens => this.doLoginUser(user.email, tokens, true)),
+        tap(() => this.connectToHub()),
         mapTo(true),
         catchError(error => {
           return of(error.error);
@@ -44,6 +73,7 @@ export class AuthService {
       'refreshToken': this.getRefreshToken(),
       'userId': this.CurrentId(),
     }).subscribe({error: err => {return; } });
+    this.disconnectFromHub();
     this.doLogoutUser();
   }
 

@@ -1,3 +1,7 @@
+const BASE = 'https://localhost:5001/api';
+
+
 export const config = {
-  apiUrl: 'https://srv.kos9078.com/api/v1',
+  apiBase: BASE,
+  apiUrl: `${BASE}/v1`,
 };

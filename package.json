@@ -63,7 +63,8 @@
     "socicon": "3.0.5",
     "typeface-exo": "0.0.22",
     "web-animations-js": "github:angular/web-animations-js#release_pr208",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.9.1",
+    "@aspnet/signalr": "latest"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.800.2",
