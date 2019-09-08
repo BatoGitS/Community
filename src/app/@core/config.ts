@@ -1,4 +1,4 @@
-const BASE = 'https://localhost:5001/api';
+const BASE = 'https://srv.kos9078.com/api';
 
 
 export const config = {

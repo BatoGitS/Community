@@ -95,7 +95,7 @@ export class AuthService {
       'userId': this.CurrentId(),
     }).pipe(tap((tokens: Tokens) => {
       this.storeTokens(tokens);
-    }));
+    }), catchError(() => {this.doLogoutUser(); return of(false); }));
   }
 
   getJwtToken() {
